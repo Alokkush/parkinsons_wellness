@@ -1,0 +1,51 @@
+# Core Streamlit and Web Framework
+streamlit==1.29.0
+streamlit-option-menu==0.3.6
+
+# Data Processing and Analysis
+pandas==2.1.3
+numpy==1.24.3
+
+# Machine Learning
+scikit-learn==1.3.2
+xgboost==2.0.1
+lightgbm==4.1.0
+joblib==1.3.2
+
+# Model Interpretability
+shap==0.43.0
+
+# Visualization
+plotly==5.17.0
+matplotlib==3.8.2
+seaborn==0.13.0
+
+# Security and Authentication
+bcrypt==4.0.1
+
+# Database
+sqlite3  # Built into Python
+
+# Document Generation
+reportlab==4.0.7
+openpyxl==3.1.2
+
+# Utility Libraries
+python-dateutil==2.8.2
+pytz==2023.3
+
+# Development and Testing
+pytest==7.4.3
+pytest-cov==4.1.0
+
+# Optional: For enhanced features
+requests==2.31.0
+pathlib2==2.3.7
+tqdm==4.66.1
+
+# For production deployment
+gunicorn==21.2.0
+uvicorn==0.24.0
+
+# Environment management
+python-dotenv==1.0.0
