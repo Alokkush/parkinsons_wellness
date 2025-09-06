@@ -1,0 +1,404 @@
+/* CSS Variables for consistent theming */
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --shadow-light: 0 8px 32px rgba(31, 38, 135, 0.37);
+    --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.2);
+    --border-radius: 20px;
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Smooth animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes fadeInUp {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    0% { transform: translateX(-30px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Main container with subtle background */
+.main > div {
+    padding: 2rem 3rem;
+    animation: fadeInUp 0.6s ease-out;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(240, 147, 251, 0.05) 0%, transparent 50%);
+    position: relative;
+}
+
+/* Enhanced cards with better contrast for light theme */
+.metric-card {
+    background: var(--primary-gradient);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    color: white;
+    margin: 0.8rem 0;
+    box-shadow: var(--shadow-light);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    transition: var(--transition-smooth);
+    animation: slideInLeft 0.5s ease-out;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--shadow-heavy);
+    animation: float 3s ease-in-out infinite;
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    transition: var(--transition-smooth);
+    opacity: 0;
+}
+
+.metric-card:hover::before {
+    opacity: 1;
+    animation: shimmer 1.5s ease-in-out;
+}
+
+.health-card {
+    background: var(--secondary-gradient);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    color: white;
+    margin: 0.8rem 0;
+    box-shadow: var(--shadow-light);
+    border: 1px solid rgba(245, 87, 108, 0.3);
+    transition: var(--transition-smooth);
+    animation: slideInLeft 0.6s ease-out;
+}
+
+.health-card:hover {
+    transform: translateY(-5px) rotateX(2deg);
+    box-shadow: 0 15px 35px rgba(245, 87, 108, 0.4);
+}
+
+.success-card {
+    background: var(--success-gradient);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    color: white;
+    margin: 0.8rem 0;
+    box-shadow: var(--shadow-light);
+    border: 1px solid rgba(79, 172, 254, 0.3);
+    transition: var(--transition-smooth);
+    animation: fadeInUp 0.7s ease-out;
+}
+
+.success-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(79, 172, 254, 0.4);
+}
+
+/* Stunning header with animated gradient */
+.main-header {
+    text-align: center;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 30%, #f093fb 60%, #f5576c 100%);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: 3rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.02em;
+    animation: shimmer 4s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(102, 126, 234, 0.2));
+}
+
+/* Modern progress bars */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(0,0,0,0.1);
+    border-radius: 50px;
+    overflow: hidden;
+    margin: 0.8rem 0;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    background-size: 200% 100%;
+    transition: var(--transition-smooth);
+    border-radius: 50px;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+/* Enhanced buttons */
+.stButton > button {
+    border-radius: 25px !important;
+    border: none !important;
+    padding: 0.7rem 2rem !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    transition: var(--transition-smooth) !important;
+    background: var(--primary-gradient) !important;
+    color: white !important;
+    position: relative !important;
+    overflow: hidden !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    font-family: 'Inter', sans-serif !important;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3) !important;
+}
+
+.stButton > button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5) !important;
+}
+
+.stButton > button:hover::before {
+    left: 100%;
+}
+
+/* Beautiful tab system */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 1.5rem;
+    background: rgba(102, 126, 234, 0.08);
+    border-radius: 50px;
+    padding: 0.5rem;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.stTabs [data-baseweb="tab"] {
+    height: 50px !important;
+    padding: 0 1.5rem !important;
+    background: rgba(255,255,255,0.7) !important;
+    color: rgba(0,0,0,0.7) !important;
+    border-radius: 25px !important;
+    border: 1px solid transparent !important;
+    transition: var(--transition-smooth) !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    background: rgba(102, 126, 234, 0.1) !important;
+    color: #667eea !important;
+    transform: translateY(-2px) !important;
+}
+
+.stTabs [aria-selected="true"] {
+    background: var(--secondary-gradient) !important;
+    color: white !important;
+    border: 1px solid rgba(245, 87, 108, 0.5) !important;
+    box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Enhanced metric containers */
+[data-testid="metric-container"] {
+    background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.08) 0%, 
+        rgba(118, 75, 162, 0.08) 100%) !important;
+    border: 1px solid rgba(102, 126, 234, 0.2) !important;
+    padding: 1.5rem !important;
+    border-radius: var(--border-radius) !important;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.1) !important;
+    transition: var(--transition-smooth) !important;
+    position: relative !important;
+}
+
+[data-testid="metric-container"]:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.2) !important;
+    border-color: rgba(102, 126, 234, 0.4) !important;
+}
+
+[data-testid="metric-container"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+[data-testid="metric-container"]:hover::before {
+    opacity: 1;
+}
+
+/* Better input styling that doesn't break functionality */
+.stTextInput > div > div > input,
+.stNumberInput > div > div > input {
+    border-radius: 12px !important;
+    border: 2px solid rgba(102, 126, 234, 0.2) !important;
+    transition: var(--transition-smooth) !important;
+    padding: 0.8rem 1rem !important;
+}
+
+.stTextInput > div > div > input:focus,
+.stNumberInput > div > div > input:focus {
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+    transform: scale(1.02) !important;
+}
+
+/* Enhanced selectbox */
+.stSelectbox > div > div > div {
+    border-radius: 12px !important;
+    border: 2px solid rgba(102, 126, 234, 0.2) !important;
+    transition: var(--transition-smooth) !important;
+}
+
+.stSelectbox > div > div > div:focus-within {
+    border-color: #667eea !important;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+}
+
+/* Form container enhancement */
+.stForm {
+    background: rgba(255,255,255,0.7) !important;
+    border: 1px solid rgba(102, 126, 234, 0.2) !important;
+    border-radius: var(--border-radius) !important;
+    padding: 2rem !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* Radio button enhancement */
+.stRadio > div {
+    background: rgba(102, 126, 234, 0.05) !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    border: 1px solid rgba(102, 126, 234, 0.1) !important;
+}
+
+/* Alert styling */
+.stAlert {
+    border-radius: 12px !important;
+    border-left: 4px solid #667eea !important;
+    animation: slideInLeft 0.5s ease-out !important;
+}
+
+/* Sidebar radio buttons */
+.stRadio > div > label {
+    width: 100% !important;
+}
+
+.stRadio > div > label > div:first-child {
+    background: rgba(255,255,255,0.1) !important;
+    border-radius: 8px !important;
+    padding: 0.7rem 1rem !important;
+    margin: 0.3rem 0 !important;
+    transition: var(--transition-smooth) !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+    color: rgba(255,255,255,0.8) !important;
+    font-weight: 500 !important;
+}
+
+.stRadio > div > label > div:first-child:hover {
+    background: rgba(255,255,255,0.2) !important;
+    transform: translateX(3px) !important;
+    border-color: rgba(255,255,255,0.3) !important;
+    color: white !important;
+}
+
+/* Selected/Active radio button state */
+.stRadio > div > label > div[data-checked="true"],
+.stRadio input:checked + div {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+    color: white !important;
+    border-color: rgba(245, 87, 108, 0.5) !important;
+    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3) !important;
+    transform: translateX(5px) !important;
+    font-weight: 600 !important;
+}
+
+/* Alternative selector for active state */
+.stRadio > div > label:has(input:checked) > div:first-child {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+    color: white !important;
+    border-color: rgba(245, 87, 108, 0.5) !important;
+    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3) !important;
+    transform: translateX(5px) !important;
+    font-weight: 600 !important;
+}
+
+/* Chart containers */
+.js-plotly-plot {
+    border-radius: 15px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1) !important;
+    border: 1px solid rgba(102, 126, 234, 0.1) !important;
+}
+
+/* Loading spinner */
+.stSpinner > div {
+    border-color: rgba(102, 126, 234, 0.3) rgba(102, 126, 234, 0.3) #667eea transparent !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .main > div {
+        padding: 1rem;
+    }
+    
+    .main-header {
+        font-size: 2rem;
+    }
+    
+    .metric-card,
+    .health-card,
+    .success-card {
+        padding: 1.5rem;
+        margin: 0.5rem 0;
+    }
+    
+    .stButton > button {
+        padding: 0.6rem 1.5rem !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+/* Accessibility - respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

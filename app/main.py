@@ -38,126 +38,18 @@ st.set_page_config(
     }
 )
 
-# Custom CSS for outstanding UI
-st.markdown("""
-<style>
-    /* Import modern fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    
-    /* Main theme */
-    .main > div {
-        padding: 2rem 3rem;
-    }
-    
-    /* Custom cards */
-    .metric-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1.5rem;
-        border-radius: 15px;
-        color: white;
-        margin: 0.5rem 0;
-        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-        backdrop-filter: blur(4px);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-    }
-    
-    .health-card {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        padding: 1.5rem;
-        border-radius: 15px;
-        color: white;
-        margin: 0.5rem 0;
-        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-    }
-    
-    .success-card {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        padding: 1.5rem;
-        border-radius: 15px;
-        color: white;
-        margin: 0.5rem 0;
-        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-    }
-    
-    /* Header styling */
-    .main-header {
-        text-align: center;
-        background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-size: 3rem;
-        font-weight: 700;
-        margin-bottom: 2rem;
-        font-family: 'Inter', sans-serif;
-    }
-    
-    /* Animated progress bars */
-    .progress-bar {
-        width: 100%;
-        background-color: #e0e0e0;
-        border-radius: 10px;
-        overflow: hidden;
-        margin: 0.5rem 0;
-    }
-    
-    .progress-fill {
-        height: 20px;
-        background: linear-gradient(90deg, #667eea, #764ba2);
-        transition: width 0.5s ease-in-out;
-        border-radius: 10px;
-    }
-    
-    /* Sidebar styling */
-    .sidebar .sidebar-content {
-        background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    /* Button enhancements */
-    .stButton > button {
-        border-radius: 25px;
-        border: none;
-        padding: 0.5rem 2rem;
-        font-weight: 600;
-        transition: all 0.3s ease;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-    }
-    
-    .stButton > button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    
-    /* Tab styling */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 24px;
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        height: 50px;
-        padding-left: 20px;
-        padding-right: 20px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border-radius: 25px;
-        border: none;
-    }
-    
-    .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    }
-    
-    /* Metric styling */
-    [data-testid="metric-container"] {
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-        border: 1px solid rgba(102, 126, 234, 0.2);
-        padding: 1rem;
-        border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-</style>
-""", unsafe_allow_html=True)
+# Load external CSS
+def load_css(file_name):
+    """Load CSS from external file"""
+    try:
+        with open(file_name, "r") as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    except FileNotFoundError:
+        st.error(f"CSS file '{file_name}' not found. Please ensure the style.css file is in the same directory as main.py")
+
+# Load the external stylesheet
+css_file_path = os.path.join(os.path.dirname(__file__), "style.css")
+load_css(css_file_path)
 
 # Enhanced Sidebar
 with st.sidebar:
@@ -628,7 +520,7 @@ def show_single_person_results(result_df, user_inputs, model, scaler):
             st.plotly_chart(fig_importance, use_container_width=True)
             
             # Show the actual values
-            st.markdown("#### 📢 Your Values vs. Normal Ranges")
+            st.markdown("#### 🔢 Your Values vs. Normal Ranges")
             st.dataframe(
                 importance_df[['Feature', 'Your Value', 'Importance']].round(4),
                 use_container_width=True,
